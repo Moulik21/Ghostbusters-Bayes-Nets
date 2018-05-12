@@ -14,14 +14,14 @@ To run a specific test case run the following command
 python autograder.py -t test_cases/q1/1-ExactObserve
 In general, all test cases can be found inside test_cases/q*.
 
-##Exact Inference Observation
+## Exact Inference Observation
 Updated the observe method in ExactInference class of inference.py to correctly update the agent's belief distribution over ghost positions given an observation from Pacman's sensors. When a ghost is eaten, that ghost is then placed in its prison cell, as described in the comments of observe.
 
 To run the autograder for this question and visualize the output:
 
 python autograder.py -q q1
 
-###Notes: 
+### Notes: 
 Busters agents have a separate inference module for each ghost they are tracking. That's why if you print an observation inside the observe function, you'll only see a single number even though there may be multiple ghosts on the board.
 
 Implemented the online belief update for observing new evidence. Before any readings, Pacman believes the ghost could be anywhere: a uniform prior (see initializeUniformly). After receiving a reading, the observe function is called, which must update the belief at every position.
@@ -31,7 +31,7 @@ In the Pacman display, high posterior beliefs are represented by bright colors, 
 Beliefs are stored as util.Counter objects (like dictionaries) in a field called self.beliefs, which is getting updated.
 The evidences are not stored. The only thing which is stored in ExactInference is self.beliefs.
 
-##Exact Inference with Time Elapse
+## Exact Inference with Time Elapse
 In the previous section belief updates for Pacman based on his observations is updated. Fortunately, Pacman's observations are not his only source of knowledge about where a ghost may be. Pacman also has knowledge about the ways that a ghost may move; namely that the ghost can not move through a wall or more than one space in one timestep.
 
 To understand why this is useful to Pacman, consider the following scenario in which there is Pacman and one Ghost. Pacman receives many observations which indicate the ghost is very near, but then one which indicates the ghost is very far. The reading indicating the ghost is very far is likely to be the result of a buggy sensor. Pacman's prior knowledge of how the ghost may move will decrease the impact of this reading since Pacman knows the ghost could not move so far in only one move.
@@ -54,12 +54,12 @@ and observe that the distribution becomes concentrated at the bottom of the boar
 
 As you watch the autograder output, remember that lighter squares indicate that pacman believes a ghost is more likely to occupy that location, and darker squares indicate a ghost is less likely to occupy that location. 
 
-Note:
+### Note:
 
 Instructions for obtaining a distribution over where a ghost will go next, given its current position and the gameState, appears in the comments of ExactInference.elapseTime in inference.py.
 We assume that ghosts still move independently of one another, so while developing all of the code for one ghost at a time, adding multiple ghosts still works correctly.
 
-#Exact Inference Full Test
+## Exact Inference Full Test
 Now that Pacman knows how to use both his prior knowledge and his observations when figuring out where a ghost is, he is ready to hunt down ghosts on his own. This section will use the observe and elapseTime implementations together, along with a simple greedy hunting strategy which is implemented in this section. In the simple greedy strategy, Pacman assumes that each ghost is in its most likely position according to its beliefs, then moves toward the closest ghost. Up to this point, Pacman has moved by randomly selecting a valid action.
 
 Implemented the chooseAction method in GreedyBustersAgent in bustersAgents.py. The agent first finds the most likely position of each remaining (uncaptured) ghost, then chooses an action that minimizes the distance to the closest ghost. 

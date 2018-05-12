@@ -60,9 +60,9 @@ Instructions for obtaining a distribution over where a ghost will go next, given
 We assume that ghosts still move independently of one another, so while developing all of the code for one ghost at a time, adding multiple ghosts still works correctly.
 
 #Exact Inference Full Test
-Now that Pacman knows how to use both his prior knowledge and his observations when figuring out where a ghost is, he is ready to hunt down ghosts on his own. This question will use the observe and elapseTime implementations together, along with a simple greedy hunting strategy which you will implement for this question. In the simple greedy strategy, Pacman assumes that each ghost is in its most likely position according to its beliefs, then moves toward the closest ghost. Up to this point, Pacman has moved by randomly selecting a valid action.
+Now that Pacman knows how to use both his prior knowledge and his observations when figuring out where a ghost is, he is ready to hunt down ghosts on his own. This section will use the observe and elapseTime implementations together, along with a simple greedy hunting strategy which is implemented in this section. In the simple greedy strategy, Pacman assumes that each ghost is in its most likely position according to its beliefs, then moves toward the closest ghost. Up to this point, Pacman has moved by randomly selecting a valid action.
 
-Implement the chooseAction method in GreedyBustersAgent in bustersAgents.py. Your agent should first find the most likely position of each remaining (uncaptured) ghost, then choose an action that minimizes the distance to the closest ghost. If correctly implemented, your agent should win the game in q3/3-gameScoreTest with a score greater than 700 at least 8 out of 10 times. Note: the autograder will also check the correctness of your inference directly, but the outcome of games is a reasonable sanity check.
+Implemented the chooseAction method in GreedyBustersAgent in bustersAgents.py. The agent first finds the most likely position of each remaining (uncaptured) ghost, then chooses an action that minimizes the distance to the closest ghost. 
 
 To run the autograder for this question and visualize the output:
 
@@ -70,8 +70,3 @@ python autograder.py -q q3
 Note: If you want to run this test (or any of the other tests) without graphics you can add the following flag:
 
 python autograder.py -q q3 --no-graphics
-Hints:
-
-When correctly implemented, your agent will thrash around a bit in order to capture a ghost.
-The comments of chooseAction provide you with useful method calls for computing maze distance and successor positions.
-Make sure to only consider the living ghosts, as described in the comments.
